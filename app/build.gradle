@@ -1,6 +1,6 @@
 plugins {
     id 'com.android.application'
-    id 'com.nylon.reinject'
+//    id 'com.nylon.reinject'
 }
 
 android {

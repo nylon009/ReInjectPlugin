@@ -36,6 +36,27 @@ after injected:
         InjectUtils.foobarAfter(test);  // this is injected by asm
     }
 ```
+
+# How to build project
+# build Plugin module and publish
+```
+./gradlew :Plugin:assemble :Plugin:publish
+```
+# use plugin
+Uncoment below lines in build.gradle
+```
+buildscript {
+    dependencies {
+        classpath 'com.nylon.reinject:reinject-plugin:0.0.1'
+    }
+}
+```
+Uncoment line in app/build.gradle
+```
+   id 'com.nylon.reinject'
+```
+Sync gradle files and build app again
+
  
 # Reference
 * [Sentry: Bytecode transformations: The Android Gradle Plugin](https://blog.sentry.io/2021/12/14/bytecode-transformations-the-android-gradle-plugin/)
