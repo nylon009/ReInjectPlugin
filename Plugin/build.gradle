@@ -1,0 +1,42 @@
+plugins {
+    id 'groovy'
+    id 'java-gradle-plugin'
+    id 'maven-publish'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+dependencies {
+    implementation gradleApi()
+    implementation localGroovy()
+    implementation 'com.android.tools.build:gradle:3.4.1'
+    implementation 'com.google.code.gson:gson:2.9.1'
+}
+
+gradlePlugin {
+    plugins {
+        simplePlugin {
+            id = 'com.nylon.reinject'
+            implementationClass = 'com.nylon.reinject.ReInjectPlugin'
+        }
+    }
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.nylon.reinject'
+            artifactId = 'reinject-plugin'
+            version = '0.0.1'
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+             url = uri('../repo')
+        }
+    }
+}
