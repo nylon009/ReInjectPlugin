@@ -12,4 +12,8 @@ public class InjectUtils {
     public static void foobarAfter(String test) {
         Log.d(TAG, "foobarAfter " + test);
     }
+
+    public static void helloBefore(Utils utils, String test) {
+        Log.d(TAG, "helloBefore " + test);
+    }
 }

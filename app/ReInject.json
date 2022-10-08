@@ -1,12 +1,19 @@
 {
-  "injects":[
+  "injects": [
     {
-        "className":"com.nylon.app.Utils",
-        "methodName": "foobar",
-        "methodSignature": "(Ljava/lang/String;)V",
-        "injectClassName": "com/nylon/app/InjectUtils",
-        "injectBeforeMethodName": "foobarBefore",
-        "injectAfterMethodName": "foobarAfter"
+      "className": "com.nylon.app.Utils",
+      "methodName": "foobar",
+      "methodSignature": "(Ljava/lang/String;)V",
+      "injectClassName": "com.nylon.app.InjectUtils",
+      "injectBeforeMethodName": "foobarBefore",
+      "injectAfterMethodName": "foobarAfter"
+    },
+    {
+      "className": "com.nylon.app.Utils",
+      "methodName": "hello",
+      "methodSignature": "(Ljava/lang/String;)V",
+      "injectClassName": "com.nylon.app.InjectUtils",
+      "injectBeforeMethodName": "helloBefore"
     }
   ]
 }

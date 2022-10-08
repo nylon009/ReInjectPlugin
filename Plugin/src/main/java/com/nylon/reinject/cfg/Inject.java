@@ -20,8 +20,15 @@ public class Inject {
         return methodSignature;
     }
 
-    public String getInjectClassName() {
-        return injectClassName;
+    public String getMethodSignatureWithThis() {
+        String paramClassName = "L" + className.replace('.', '/') + ";";
+        int leftBracketIndex = methodSignature.indexOf('(') + 1;
+        String ret = methodSignature.substring(0, leftBracketIndex) + paramClassName + methodSignature.substring(leftBracketIndex);
+        return ret;
+    }
+
+    public String getInjectClassName4Call() {
+        return injectClassName.replace('.', '/');
     }
 
     public String getInjectBeforeMethodName() {

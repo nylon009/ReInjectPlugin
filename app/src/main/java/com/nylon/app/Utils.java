@@ -7,4 +7,9 @@ public class Utils {
     public static void foobar(String test){
         Log.d(TAG, "foobar");
     }
+
+    public void hello(String msg){
+        Log.d(TAG, "hello " + msg);
+    }
+
 }
