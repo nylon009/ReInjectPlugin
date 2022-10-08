@@ -5,8 +5,8 @@
 # Sample
 ## config file
 add ReInject.json file in the project path as below:
-Please note that InjectUtils.java, the method for static and nonstatic method are different:　
-For instance method, the inject function should be the origin class as the first parameter.
+Please note the method for static and non static method are different in InjectUtil.java
+For non static method, the inject function should use the origin class as the first parameter.
 ```
 {
   "injects": [
@@ -32,34 +32,32 @@ For instance method, the inject function should be the origin class as the first
 original code:
 com.nylon.app.Utils
 ```
-    public static void foobar(String test){
-        Log.d(TAG, "foobar");
-    }
+public static void foobar(String test){
+    Log.d(TAG, "foobar");
+}
 ```
 
 after injected:
 ```
-    public static void foobar(String test) {
-        InjectUtils.foobarBefore(test); // this is injected by asm
-        Log.d(TAG, "foobar");
-        InjectUtils.foobarAfter(test);  // this is injected by asm
-    }
+public static void foobar(String test) {
+    InjectUtils.foobarBefore(test); // this is injected by asm
+    Log.d(TAG, "foobar");
+    InjectUtils.foobarAfter(test);  // this is injected by asm
+}
 ```
 ## Inject for none-static method
 origin
 ```
-    public void hello(String msg) {
-        InjectUtils.helloBefore(this, msg);
-        InjectUtils.helloBefore(this, msg);
-        Log.d(TAG, "hello " + msg);
-    }
+public void hello(String msg) {
+    Log.d(TAG, "hello " + msg);
+}
 ```
 after injected
 ```
-    public void hello(String msg) {
-        InjectUtils.helloBefore(this, msg);
-        Log.d(TAG, "hello " + msg);
-    }
+public void hello(String msg) {
+    InjectUtils.helloBefore(this, msg);
+    Log.d(TAG, "hello " + msg);
+}
 ```
 
 # How to build project
