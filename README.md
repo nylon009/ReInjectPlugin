@@ -15,15 +15,16 @@ For non static method, the inject function should use the origin class as the fi
       "methodName": "foobar",
       "methodSignature": "(Ljava/lang/String;)V",
       "injectClassName": "com.nylon.app.InjectUtils",
-      "injectBeforeMethodName": "foobarBefore",
-      "injectAfterMethodName": "foobarAfter"
+      "injectEnterMethodName": "foobarEnter",
+      "injectExitMethodName": "foobarExit"
     },
     {
       "className": "com.nylon.app.Utils",
       "methodName": "hello",
       "methodSignature": "(Ljava/lang/String;)V",
       "injectClassName": "com.nylon.app.InjectUtils",
-      "injectBeforeMethodName": "helloBefore"
+      "injectEnterMethodName": "helloEnter",
+      "injectExitMethodName": "helloExit"
     }
   ]
 }
@@ -40,9 +41,9 @@ public static void foobar(String test){
 after injected:
 ```
 public static void foobar(String test) {
-    InjectUtils.foobarBefore(test); // this is injected by asm
+    InjectUtils.foobarEnter(test); // this is injected by asm
     Log.d(TAG, "foobar");
-    InjectUtils.foobarAfter(test);  // this is injected by asm
+    InjectUtils.foobarExit(test);  // this is injected by asm
 }
 ```
 ## Inject for none-static method
@@ -55,8 +56,9 @@ public void hello(String msg) {
 after injected
 ```
 public void hello(String msg) {
-    InjectUtils.helloBefore(this, msg);
+    InjectUtils.helloEnter(this, msg);
     Log.d(TAG, "hello " + msg);
+    InjectUtils.helloExit(this, msg);
 }
 ```
 
@@ -86,4 +88,6 @@ build app
 ```
  
 # Reference
+* [ASM homepage](https://asm.ow2.io/)
 * [Sentry: Bytecode transformations: The Android Gradle Plugin](https://blog.sentry.io/2021/12/14/bytecode-transformations-the-android-gradle-plugin/)
+* [AndroidPluginStudy](https://github.com/stven0king/AndroidPluginStudy)

@@ -27,27 +27,27 @@ public class ReInjectMethodVisitor extends AdviceAdapter {
     @Override
     protected void onMethodEnter() {
         super.onMethodEnter();
-        if (inject == null || inject.getInjectBeforeMethodName() == null) {
+        if (inject == null || inject.getInjectEnterMethodName() == null) {
             return;
         }
         pushArgs();
         String methodSignature = getCallMethodSignature();
         ReLog.d(TAG, "call " + methodSignature);
         methodVisitor.visitMethodInsn(Opcodes.INVOKESTATIC, inject.getInjectClassName4Call(),
-                inject.getInjectBeforeMethodName(), methodSignature, false);
+                inject.getInjectEnterMethodName(), methodSignature, false);
     }
 
     @Override
     protected void onMethodExit(int opcode) {
         super.onMethodExit(opcode);
-        if (inject == null || inject.getInjectAfterMethodName() == null) {
+        if (inject == null || inject.getInjectExitMethodName() == null) {
             return;
         }
         pushArgs();
         String methodSignature = getCallMethodSignature();
         ReLog.d(TAG, "call " + methodSignature);
         methodVisitor.visitMethodInsn(Opcodes.INVOKESTATIC, inject.getInjectClassName4Call(),
-                inject.getInjectAfterMethodName(), methodSignature, false);
+                inject.getInjectExitMethodName(), methodSignature, false);
     }
 
     private void pushArgs() {

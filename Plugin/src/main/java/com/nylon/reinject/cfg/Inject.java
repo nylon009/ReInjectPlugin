@@ -5,8 +5,8 @@ public class Inject {
     private String methodName;
     private String methodSignature;
     private String injectClassName;
-    private String injectBeforeMethodName;
-    private String injectAfterMethodName;
+    private String injectEnterMethodName;
+    private String injectExitMethodName;
 
     public String getClassName() {
         return className;
@@ -31,12 +31,12 @@ public class Inject {
         return injectClassName.replace('.', '/');
     }
 
-    public String getInjectBeforeMethodName() {
-        return injectBeforeMethodName;
+    public String getInjectEnterMethodName() {
+        return injectEnterMethodName;
     }
 
-    public String getInjectAfterMethodName() {
-        return injectAfterMethodName;
+    public String getInjectExitMethodName() {
+        return injectExitMethodName;
     }
 
     @Override
@@ -46,8 +46,8 @@ public class Inject {
                 ", methodName='" + methodName + '\'' +
                 ", methodSignature='" + methodSignature + '\'' +
                 ", injectClassName='" + injectClassName + '\'' +
-                ", injectBeforeMethodName='" + injectBeforeMethodName + '\'' +
-                ", injectAfterMethodName='" + injectAfterMethodName + '\'' +
+                ", injectEnterMethodName='" + injectEnterMethodName + '\'' +
+                ", injectExitMethodName='" + injectExitMethodName + '\'' +
                 '}';
     }
 }

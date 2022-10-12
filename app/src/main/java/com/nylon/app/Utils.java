@@ -12,4 +12,10 @@ public class Utils {
         Log.d(TAG, "hello " + msg);
     }
 
+    public static void hello2(String msg){
+        Log.d(TAG, "hello2 " + msg);
+    }
+
+
+
 }
