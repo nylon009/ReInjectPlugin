@@ -19,7 +19,7 @@ dependencies {
 gradlePlugin {
     plugins {
         simplePlugin {
-            id = 'com.nylon.reinject'
+            id = 'io.github.nylon009.reinject'
             implementationClass = 'com.nylon.reinject.ReInjectPlugin'
         }
     }
@@ -28,7 +28,7 @@ gradlePlugin {
 publishing {
     publications {
         maven(MavenPublication) {
-            groupId = 'com.nylon.reinject'
+            groupId = 'io.github.nylon009'
             artifactId = 'reinject-plugin'
             version = '0.0.1'
             from components.java

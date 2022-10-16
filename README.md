@@ -68,13 +68,17 @@ Comment below lines in build.gradle
 ```
 #buildscript {
 #    dependencies {
-#        classpath 'com.nylon.reinject:reinject-plugin:0.0.1'
+#        classpath 'io.github.nylon009:reinject-plugin:0.0.1'
 #    }
 #}
 ```
 Comment line in app/build.gradle
 ```
-   # id 'com.nylon.reinject'
+plugins {
+    id 'com.android.application'
+    #id 'io.github.nylon009.reinject'
+}
+
 ```
 build and publish plugin
 ```
