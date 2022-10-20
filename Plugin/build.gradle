@@ -2,11 +2,15 @@ plugins {
     id 'groovy'
     id 'java-gradle-plugin'
     id 'maven-publish'
+    id 'signing'
 }
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
+
+    withJavadocJar()
+    withSourcesJar()
 }
 
 dependencies {
@@ -18,8 +22,8 @@ dependencies {
 
 gradlePlugin {
     plugins {
-        simplePlugin {
-            id = 'io.github.nylon009.reinject'
+        ReInjectPlugin {
+            id = 'io.github.nylon009.reinject-plugin'
             implementationClass = 'com.nylon.reinject.ReInjectPlugin'
         }
     }
@@ -27,7 +31,7 @@ gradlePlugin {
 
 publishing {
     publications {
-        maven(MavenPublication) {
+        pluginPublication(MavenPublication) {
             groupId = 'io.github.nylon009'
             artifactId = 'reinject-plugin'
             version = '0.0.1'

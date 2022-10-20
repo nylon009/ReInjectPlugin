@@ -79,22 +79,20 @@ public class ReInjectTransform extends Transform {
     public void transform(TransformInvocation transformInvocation)
             throws TransformException, InterruptedException, IOException {
         super.transform(transformInvocation);
-        //transform方法中才能获取到注册的对象
         initConfig();
         if (!isIncremental()) {
             transformInvocation.getOutputProvider().deleteAll();
         }
-        // 获取输入（消费型输入，需要传递给下一个Transform）
         Collection<TransformInput> inputs = transformInvocation.getInputs();
         for (TransformInput input : inputs) {
-            // 遍历输入，分别遍历其中的jar以及directory
+            // go through jar and directory
             for (JarInput jarInput : input.getJarInputs()) {
-                //对jar文件进行处理
+                // handle jar
                 ReLog.d(TAG, "Find jar input: " + jarInput.getName());
                 transformJar(transformInvocation, jarInput);
             }
             for (DirectoryInput directoryInput : input.getDirectoryInputs()) {
-                // 对directory进行处理
+                // handle directory
                 ReLog.d(TAG, "Find dir input:" + directoryInput.getFile().getName());
                 transformDirectory(transformInvocation, directoryInput);
             }
@@ -146,14 +144,12 @@ public class ReInjectTransform extends Transform {
         }
         output.close();
         originJar.close();
-        // 复制修改后jar到输出路径
         FileUtils.copyFile(outputJar, dest);
     }
 
 
     private void transformDirectory(TransformInvocation invocation, DirectoryInput input) throws IOException {
         File tempDir = invocation.getContext().getTemporaryDir();
-        // 获取输出路径
         File dest = invocation.getOutputProvider()
                 .getContentLocation(input.getName(), input.getContentTypes(), input.getScopes(), Format.DIRECTORY);
         File dir = input.getFile();
@@ -181,14 +177,6 @@ public class ReInjectTransform extends Transform {
         }
     }
 
-    /**
-     * 遍历目录下面的class文件
-     *
-     * @param basedir 基准目录，和dir对比需要找到包路径
-     * @param tempDir 需要写入的临时目录
-     * @param dir     class文件目录
-     * @throws IOException
-     */
     private void traverseDirectory(String basedir, File tempDir, File dir) throws IOException {
         for (File file : Objects.requireNonNull(dir.listFiles())) {
             if (file.isDirectory()) {

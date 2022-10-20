@@ -35,6 +35,10 @@ public class ReInjectConfig {
         }
     }
 
+    /**
+     * Get ReInjectBean correspond to ReInject.json
+     * @return ReInjectBean
+     */
     public ReInjectBean getInjectBean() {
         return injectBean;
     }
