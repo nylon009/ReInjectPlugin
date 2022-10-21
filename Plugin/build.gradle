@@ -1,16 +1,15 @@
 plugins {
     id 'groovy'
     id 'java-gradle-plugin'
-    id 'maven-publish'
-    id 'signing'
+    id "com.vanniktech.maven.publish" version "0.22.0"
 }
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
 
-    withJavadocJar()
-    withSourcesJar()
+//    withJavadocJar()
+//    withSourcesJar()
 }
 
 dependencies {
@@ -29,18 +28,32 @@ gradlePlugin {
     }
 }
 
+mavenPublishing {
+    publishToMavenCentral("S01")
+    signAllPublications()
+}
+
 publishing {
-    publications {
-        pluginPublication(MavenPublication) {
-            groupId = 'io.github.nylon009'
-            artifactId = 'reinject-plugin'
-            version = '0.0.1'
-            from components.java
-        }
-    }
     repositories {
-        maven {
-             url = uri('../repo')
+        maven  {
+            name = "myRepo"
+            url = uri('../repo')
         }
     }
 }
+
+//publishing {
+//    publications {
+//        pluginPublication(MavenPublication) {
+//            groupId = 'io.github.nylon009'
+//            artifactId = 'reinject-plugin'
+//            version = '0.0.1'
+//            from components.java
+//        }
+//    }
+//    repositories {
+//        maven {
+//             url =
+//        }
+//    }
+//}
