@@ -1,7 +1,7 @@
 
 plugins {
     id 'com.android.application'
-    //id 'io.github.nylon009.reinject-plugin'
+    id 'io.github.nylon009.reinject-plugin'
 }
 
 android {
